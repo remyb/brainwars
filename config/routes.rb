@@ -1,4 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
+  map.contact '/contact', :controller => 'pages', :action => 'contact'
+  map.about '/about', :controller => 'pages', :action => 'about'
+  map.help '/help', :controller => 'pages', :action => 'help'
+  map.root :controller => 'pages', :action => 'home'
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:
