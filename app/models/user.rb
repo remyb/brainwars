@@ -51,9 +51,6 @@ class User < ActiveRecord::Base
     # password mismatch is implicitely nil (nothing is returned)
   end
   
-  
-  
-  
   private
   
     def encrypt_password
