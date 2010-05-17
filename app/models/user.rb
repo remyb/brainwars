@@ -29,10 +29,18 @@ class User < ActiveRecord::Base
   validates_presence_of :password
   validates_length_of :password, :within => 6..40
   
+  # hook to encrypt before saving
+  before_save :encrypt_password
+  
   def has_password?(submitted_password)
     # compare encrypted_password with the encrypted version of
     # the submitted_password.
     encrypted_password == encrypt(submitted_password)
+  end
+  
+  def remember_me!
+    self.remember_token = encrypt("#{salt}--#{id}")
+    save_without_validation
   end
   
   def self.authenticate(email, submitted_password)
@@ -42,13 +50,16 @@ class User < ActiveRecord::Base
     # password mismatch is implicitely nil (nothing is returned)
   end
   
-  before_save :encrypt_password
+  
+  
   
   private
   
     def encrypt_password
-      self.salt = make_salt
-      self.encrypted_password = encrypt(password)
+      unless password.nil?
+        self.salt = make_salt
+        self.encrypted_password = encrypt(password)
+      end
     end
     
     def encrypt(string)
