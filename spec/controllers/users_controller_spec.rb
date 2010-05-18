@@ -3,6 +3,30 @@ require 'spec_helper'
 describe UsersController do
   integrate_views
   
+  describe "GET 'edit'" do
+    
+    before(:each) do
+      @user = Factory(:user)
+      test_sign_in(@user)
+    end
+    
+    it "should be successful" do
+      get :edit, :id => @user
+      response.should be_success
+    end
+    
+    it "should have the right title" do
+      get :edit, :id => @user
+      response.should have_tag("title", /edit user/i)
+    end
+    
+    it "should have a link to change the gravatar" do
+      get :edit, :id => @user
+      gravatar_url = "http://gravatar.com/emails"
+      response.should have_tag("a[href=?]", gravatar_url, /change/i)
+    end
+  end
+  
   describe "GET 'show'" do
     
     before(:each) do
@@ -43,6 +67,46 @@ describe UsersController do
       response.should have_tag("title", /Sign up/)
     end
   end
+  
+  describe "authentication of edit/update pages" do
+    
+    before(:each) do
+      @user = Factory(:user)
+    end
+    
+    describe "for non-signed-in users" do
+      
+      it "should deny access to 'edit'" do
+        get :edit, :id => @user
+        response.should redirect_to(signin_path)
+      end
+      
+      it "should deny access to 'update'" do
+        put :update, :id => @user, :user => {}
+        response.should redirect_to(signin_path)
+      end
+    end
+    
+    describe "for signed-in users" do
+      
+      before(:each) do
+        wrong_user = Factory(:user, :email => "user@example.net")
+        test_sign_in(wrong_user)
+      end
+      
+      it "should require matching users for 'edit'" do
+        get :edit, :id => @user
+        response.should redirect_to(root_path)
+      end
+      
+      it "should require matching users for 'update'" do
+        put :update, :id => @user, :user => {}
+        response.should redirect_to(root_path)
+      end
+    end
+  end
+    
+    
   
   describe "POST 'create'" do
     
