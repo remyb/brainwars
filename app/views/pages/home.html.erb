@@ -1,5 +1,22 @@
-<h1>BrainWars</h1>
-<p>
-  	This is the future site of BrainWars!
-</p>
-<%= link_to "Sign up now!", signup_path, :class => "signup_button round" %>
+<% if signed_in? %>
+  <table class="front">
+    <tr>
+      <td class="main">
+        <h2 class="micropost">What's up?</h2>
+        <%= render 'pages/micropost_form' %>
+		<%= render 'pages/feed' %>
+      </td>
+      <td class="sidebar round">
+        <%= render 'pages/user_info' %>
+      </td>
+    </tr>
+  </table>
+<% else %>
+  <h1>Brain Wars</h1>
+
+  <p>
+    Brain Wars. A Ruby on Rails App by Remy.
+  </p>
+
+  <%= link_to "Sign up now!", signup_path, :class => "signup_button round" %>
+<% end %>
