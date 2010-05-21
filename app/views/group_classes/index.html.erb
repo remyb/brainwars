@@ -1,0 +1,22 @@
+<h1>Listing group_classes</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+  </tr>
+
+<% @group_classes.each do |group_class| %>
+  <tr>
+    <td><%=h group_class.name %></td>
+    <td><%=h group_class.description %></td>
+    <td><%= link_to 'Show', group_class %></td>
+    <td><%= link_to 'Edit', edit_group_class_path(group_class) %></td>
+    <td><%= link_to 'Destroy', group_class, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New group_class', new_group_class_path %>

@@ -1,0 +1,13 @@
+<p>
+  <b>Name:</b>
+  <%=h @group_class.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @group_class.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_group_class_path(@group_class) %> |
+<%= link_to 'Back', group_classes_path %>
