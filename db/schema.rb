@@ -9,7 +9,30 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100519061228) do
+<<<<<<< HEAD
+<<<<<<< HEAD
+ActiveRecord::Schema.define(:version => 20100521014818) do
+=======
+ActiveRecord::Schema.define(:version => 20100521235315) do
+
+  create_table "events", :force => true do |t|
+    t.string   "name"
+    t.datetime "start_at"
+    t.datetime "end_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+>>>>>>> 66b729e... Ok, so I'm experimenting with the calendar at:
+=======
+ActiveRecord::Schema.define(:version => 20100521014818) do
+>>>>>>> 7946a61... new schema
+
+  create_table "group_classes", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "microposts", :force => true do |t|
     t.string   "content"
