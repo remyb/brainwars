@@ -3,7 +3,7 @@
   <ul class="navigation round">
     <li><%= link_to "Newsroom", root_path %></li>
 	<% if signed_in? %>
-	<li><%= link_to "Calendar", calendar_path %></li>
+	<li><%= link_to "Calendar", calendar_path(Time.zone.now.year,Time.zone.now.month) %></li>
 	<li><%= link_to "Profile", current_user %></li>
 	<li><%= link_to "Users", users_path %></li>
 	<li><%= link_to "Settings", edit_user_path(current_user) %> </li>
