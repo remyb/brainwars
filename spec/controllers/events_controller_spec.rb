@@ -5,7 +5,12 @@ describe EventsController do
   def mock_event(stubs={})
     @mock_event ||= mock_model(Event, stubs)
   end
-
+  
+  before(:each) do
+    @user = Factory(:user)
+    test_sign_in(@user)
+  end
+  
   describe "GET index" do
     it "assigns all events as @events" do
       Event.stub(:find).with(:all).and_return([mock_event])

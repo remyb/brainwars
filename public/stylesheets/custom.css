@@ -3,7 +3,10 @@
 }
 
 body {
-  background: #006;
+  /*background: #657383;*/
+  background-image:url('../images/wallpaper-light.jpg') ;
+
+ 
 }
 
 #header {

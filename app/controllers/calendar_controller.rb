@@ -1,6 +1,9 @@
 class CalendarController < ApplicationController
   
+  before_filter :authenticate
+  
   def index
+    @title = "Event Calendar"
     @month = params[:month].to_i
     @year = params[:year].to_i
 
