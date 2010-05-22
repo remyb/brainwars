@@ -3,7 +3,7 @@
 }
 
 body {
-  background: #cff;
+  background: #006;
 }
 
 #header {
@@ -41,7 +41,7 @@ a:visited {
 /* Navigation */
 
 .navigation {
-  float: right;
+  /*float: left;*/
 }
 
 .navigation {

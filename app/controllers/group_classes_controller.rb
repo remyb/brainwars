@@ -3,7 +3,7 @@ class GroupClassesController < ApplicationController
   # GET /group_classes.xml
   def index
     @group_classes = GroupClass.all
-
+    @title = "bob"
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @group_classes }
@@ -14,7 +14,7 @@ class GroupClassesController < ApplicationController
   # GET /group_classes/1.xml
   def show
     @group_class = GroupClass.find(params[:id])
-
+    
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @group_class }

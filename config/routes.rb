@@ -1,4 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
+  map.calendar '/calendar/:year/:month', :controller => 'calendar', :action => 'index', :year => Time.zone.now.year, :month => Time.zone.now.month
   map.resources :group_classes
 
   map.contact '/contact', :controller => 'pages', :action => 'contact'
@@ -11,6 +12,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :microposts, :only => [:create, :destroy]
   map.signin '/signin', :controller => 'sessions', :action => 'new'
   map.signout '/signout', :controller => 'sessions', :action => 'destroy'
+  map.calendar "/calendar/:year/:month", :controller => "calendar", :action => "index", :year => Time.now.year, :month => Time.now.month
   
   # The priority is based upon order of creation: first created -> highest priority.
 
